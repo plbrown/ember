@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ff5a5f">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://dvozogvvdadgckgxtdkd.supabase.co; connect-src 'self' https://dvozogvvdadgckgxtdkd.supabase.co wss://dvozogvvdadgckgxtdkd.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="no-referrer">
 <title>Ember — find your spark</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🔥%3C/text%3E%3C/svg%3E">
 <style>
@@ -278,10 +280,80 @@ textarea.inp{resize:none;height:84px}
 .sheet-foot{display:flex;gap:12px;padding:12px 22px calc(16px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--bg)}
 .sheet-foot .btn{margin-top:0;padding:14px}
 .sheet-foot .btn.ghost{flex:0 0 112px}
+
+/* ---------- v6: accounts ---------- */
+#auth,#loading{background:var(--bg)}
+#auth .hero{padding:34px 24px 10px}
+.au-tabs{display:flex;background:#f6ece9;border-radius:14px;padding:4px;margin:4px 0 6px}
+.au-tabs button{flex:1;padding:10px;border-radius:11px;font-weight:700;color:var(--muted);font-size:15px}
+.au-tabs button.on{background:#fff;color:var(--accent);box-shadow:0 3px 10px rgba(60,20,20,.08)}
+.ck{display:flex;align-items:flex-start;gap:10px;margin-top:16px;font-size:14px;font-weight:600;cursor:pointer}
+.ck input{width:20px;height:20px;accent-color:var(--accent);flex:0 0 auto;margin-top:1px}
+.au-note{font-size:12.5px;color:var(--muted);line-height:1.45;margin-top:10px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:10px 12px}
+.au-note b{color:var(--ink)}
+.okmsg{color:#0f8a5f;font-size:14px;line-height:1.45;margin-top:8px;display:none;background:#eafaf3;border-radius:14px;padding:12px 14px}
+.okmsg.show{display:block}
+.linkbtn{display:block;margin:14px auto 0;color:var(--accent);font-weight:700;font-size:14px;padding:4px 8px}
+.au-or{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px;margin:18px 0 0}
+.au-or::before,.au-or::after{content:'';flex:1;height:1px;background:var(--line)}
+#auth .btn.ghost{margin-top:12px;font-size:15px;padding:13px}
+.au-small{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+.spin{width:34px;height:34px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--accent);animation:rot .8s linear infinite;margin:18px auto 0}
+@keyframes rot{to{transform:rotate(360deg)}}
+.btn.busy{opacity:.7;pointer-events:none}
+.modechip{font-size:11px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#fff;background:#24181a;padding:3px 8px;border-radius:999px;margin-left:2px}
+.demo-tag{position:absolute;top:16px;left:16px;z-index:3;font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#24181a;background:rgba(255,255,255,.9);padding:5px 10px;border-radius:999px;box-shadow:0 3px 10px rgba(0,0,0,.15)}
+.real-tag{position:absolute;top:16px;left:16px;z-index:3;font-size:11px;font-weight:800;letter-spacing:.4px;color:#fff;background:rgba(34,195,142,.92);padding:5px 10px;border-radius:999px;box-shadow:0 3px 10px rgba(0,0,0,.15)}
+.dtag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);border:1.5px solid var(--line);background:#fff;padding:1px 6px;border-radius:999px;vertical-align:2px;margin-left:4px}
+.card .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card .photo .big-init{font-size:110px;font-weight:900;color:rgba(255,255,255,.9);margin-top:-80px;text-shadow:0 8px 24px rgba(0,0,0,.15)}
+.chatmenu{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:22px;font-weight:900;color:var(--muted);letter-spacing:1px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;padding:15px 16px;background:#fff;border-radius:16px;margin-top:10px;font-weight:700;font-size:16px;text-align:left;box-shadow:0 4px 14px rgba(60,20,20,.05)}
+.opt small{display:block;font-weight:400;color:var(--muted);font-size:12.5px;margin-top:2px}
+.opt.danger{color:var(--pass)}
+.opt .ic{font-size:20px;width:26px;text-align:center}
+.sf-note{font-size:12.5px;color:var(--muted);line-height:1.45;margin:12px 2px 4px}
+.reasons{display:flex;flex-direction:column;gap:8px}
+.reasons label{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;font-size:15px;font-weight:600;cursor:pointer}
+.reasons input{accent-color:var(--accent);width:18px;height:18px}
+.reasons label:has(input:checked){border-color:var(--accent);background:#fff5f3}
+.btn.danger{background:#24181a;box-shadow:none}
+.btn.warn{background:#fff;color:var(--pass);border:1.5px solid #ffd0d8;box-shadow:none}
+.acct{font-size:13px;color:var(--muted);text-align:center;margin:-4px 0 12px}
+.setrow{background:#fff;border-radius:18px;padding:2px 16px 14px;box-shadow:0 6px 20px rgba(60,20,20,.06);margin-bottom:12px}
+.setrow .swrow:first-child{border-top:0}
+.ldeck{position:absolute;inset:0 0 96px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);gap:4px}
 </style>
 </head>
 <body>
 <div id="app">
+
+  <!-- Loading -->
+  <section class="screen" id="loading">
+    <div class="hero" style="margin-top:18vh"><div class="big">🔥</div><h1>Ember</h1><p id="loadTxt">Loading…</p><div class="spin"></div></div>
+  </section>
+
+  <!-- Sign up / log in / reset -->
+  <section class="screen" id="auth">
+    <div class="hero"><div class="big">🔥</div><h1 id="auTitle">Join Ember</h1><p id="auSub">Small sparks, real connections.</p></div>
+    <form class="form" id="auForm" novalidate>
+      <div class="au-tabs" id="auTabs" role="tablist"><button type="button" data-m="signup" id="auTabSignup">Sign up</button><button type="button" data-m="login" id="auTabLogin">Log in</button></div>
+      <div id="auEmailWrap"><label class="f" for="auEmail">Email</label><input class="inp" id="auEmail" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" maxlength="254"></div>
+      <div id="auPwWrap"><label class="f" for="auPw" id="auPwLbl">Password</label><input class="inp" id="auPw" type="password" autocomplete="current-password" placeholder="At least 8 characters" maxlength="72"></div>
+      <div id="auPw2Wrap"><label class="f" for="auPw2">Confirm new password</label><input class="inp" id="auPw2" type="password" autocomplete="new-password" placeholder="Type it again" maxlength="72"></div>
+      <label class="ck" id="auAgeWrap"><input type="checkbox" id="auAge"><span>I confirm I'm 18 or older</span></label>
+      <p class="au-note" id="auNote">👀 <b>Heads up:</b> your Ember profile — first name, age, photos, bio, interests and rough distance — is visible to other signed-in members. Your email is never shown.</p>
+      <div class="err" id="auErr" role="alert"></div>
+      <div class="okmsg" id="auMsg" role="status"></div>
+      <button class="btn" type="submit" id="auGo">Create account</button>
+      <button type="button" class="linkbtn" id="auResend" style="display:none">Resend confirmation email</button>
+      <button type="button" class="linkbtn" id="auForgot">Forgot password?</button>
+      <button type="button" class="linkbtn" id="auBack" style="display:none">← Back to log in</button>
+      <div id="auGuest"><div class="au-or">or</div>
+        <button type="button" class="btn ghost" id="guestBtn">Just look around (demo, no account)</button>
+        <p class="au-small">Demo mode uses fictional profiles and keeps everything on this device.</p></div>
+    </form>
+  </section>
 
   <!-- Onboarding -->
   <section class="screen" id="onboard">
@@ -290,7 +362,7 @@ textarea.inp{resize:none;height:84px}
       <h1>Welcome to Ember</h1>
       <p>Small sparks, real connections.</p>
     </div>
-    <form class="form" id="obForm" autocomplete="off">
+    <form class="form" id="obForm" autocomplete="off" novalidate>
       <label class="f">Your photo <span style="text-transform:none;font-weight:400">(optional)</span></label>
       <div class="ob-photo">
         <div id="obPhotoPrev"></div>
@@ -299,17 +371,20 @@ textarea.inp{resize:none;height:84px}
             <button type="button" class="pbtn" id="obPhotoBtn">📷 Add photo</button>
             <button type="button" class="pbtn rm" id="obPhotoRm" style="display:none">Remove</button>
           </div>
-          <div class="hintx">JPG, PNG, WebP or GIF. Stays on this device.</div>
+          <div class="hintx" id="obPhotoHint">JPG, PNG, WebP or GIF. Stays on this device.</div>
         </div>
       </div>
       <div class="row">
         <div><label class="f" for="obName">First name</label><input class="inp" id="obName" maxlength="20" placeholder="Alex"></div>
-        <div style="flex:0 0 96px"><label class="f" for="obAge">Age</label><input class="inp" id="obAge" type="number" min="18" max="99" placeholder="27"></div>
+        <div style="flex:0 0 96px" id="obAgeWrap"><label class="f" for="obAge">Age</label><input class="inp" id="obAge" type="number" min="18" max="99" placeholder="27"></div>
+        <div style="flex:0 0 150px;display:none" id="obDobWrap"><label class="f" for="obDob">Birthday</label><input class="inp" id="obDob" type="date" style="padding:13px 10px"></div>
       </div>
       <label class="f" for="obBio">About you</label>
       <textarea class="inp" id="obBio" maxlength="140" placeholder="Coffee snob, weekend hiker, always down for tacos."></textarea>
       <label class="f">Interests <span style="text-transform:none;font-weight:400">(pick up to 6)</span></label>
       <div class="chips" id="obChips"></div>
+      <label class="swrow" id="obLocWrap" style="display:none"><span>Show my approximate distance<small>Uses your location once, rounded to about 10 km (6 mi). Your exact location is never stored.</small></span><input type="checkbox" class="sw" id="obLoc"></label>
+      <p class="au-note" id="obNote" style="display:none">Your profile is visible to other signed-in Ember members. You can edit or delete it any time from your Profile tab.</p>
       <div class="err" id="obErr"></div>
       <button class="btn" type="submit" id="obGo">Start discovering</button>
     </form>
@@ -318,7 +393,7 @@ textarea.inp{resize:none;height:84px}
   <!-- Discover -->
   <section class="screen" id="discover">
     <div class="topbar">
-      <div class="logo"><div class="flame">🔥</div><span class="t">Ember</span></div>
+      <div class="logo"><div class="flame">🔥</div><span class="t">Ember</span><span class="modechip" id="modeChip" style="display:none">Demo</span></div>
       <div class="tb-r">
       <button class="act small" id="undoBtn" title="Rewind" aria-label="Rewind last pass" style="box-shadow:none;background:transparent">
         <svg viewBox="0 0 24 24" fill="none" stroke="#ffb020" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
@@ -337,6 +412,15 @@ textarea.inp{resize:none;height:84px}
         <h2>You're all caught up</h2>
         <p class="muted">No more people nearby right now. Check back later, or start over.</p>
         <button class="btn ghost" id="refillBtn" style="max-width:220px">Show profiles again</button>
+      </div>
+      <div class="ldeck" id="ldeck" style="display:none"><div class="spin"></div><p style="margin-top:10px">Finding people…</p></div>
+      <div class="empty" id="realEmpty" style="display:none">
+        <div class="e">🌱</div>
+        <h2>You've seen everyone for now</h2>
+        <p class="muted">Ember is brand new, so there aren't many members yet. New people join all the time — check back soon.</p>
+        <button class="btn" id="demoOnBtn" style="max-width:260px;margin-top:16px">Browse demo profiles</button>
+        <p class="muted" style="font-size:12px;margin-top:6px">Demo profiles are fictional and clearly labeled.</p>
+        <button class="btn ghost" id="realRefresh" style="max-width:260px;margin-top:10px">Check for new people</button>
       </div>
       <div class="empty" id="fempty" style="display:none">
         <div class="e">🔍</div>
@@ -370,7 +454,8 @@ textarea.inp{resize:none;height:84px}
     <div class="chathead">
       <button class="back" id="chatBack" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
       <div id="chatAv"></div>
-      <div style="flex:1"><div style="font-weight:700" id="chatName"></div><div id="chatStatus" aria-live="polite">● Active now</div></div>
+      <div style="flex:1;min-width:0"><div style="font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><span id="chatName"></span> <span class="dtag" id="chatTag" style="display:none">Demo</span></div><div id="chatStatus" aria-live="polite">● Active now</div></div>
+      <button class="chatmenu" id="chatMenu" aria-label="Safety and match options" aria-haspopup="dialog">⋯</button>
     </div>
     <div class="msgs" id="msgs"></div>
     <div class="icebreakers" id="ice"></div>
@@ -386,6 +471,47 @@ textarea.inp{resize:none;height:84px}
     <button class="tab" data-tab="matches"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2z" opacity=".95"/></svg>Matches<span class="badge" id="badge"></span></button>
     <button class="tab" data-tab="profile"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4.2"/><path d="M3.5 20.5c.8-4 4.3-6.5 8.5-6.5s7.7 2.5 8.5 6.5z"/></svg>Profile</button>
   </nav>
+
+  <!-- Safety sheet (unmatch / block / report) -->
+  <div class="sheet-wrap" id="safetySheet" role="dialog" aria-modal="true" aria-labelledby="sfTitle">
+    <div class="sheet-bg" id="sfBg"></div>
+    <div class="sheet">
+      <div class="grab"></div>
+      <div class="sheet-head"><h2 id="sfTitle">Options</h2>
+        <button class="back" id="sfClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+      <div class="sheet-body" style="padding-bottom:22px">
+        <button class="opt danger" id="sfReport"><span class="ic">🚩</span><span>Report<small>Tell us about fake profiles, harassment or anything unsafe.</small></span></button>
+        <button class="opt danger" id="sfBlock"><span class="ic">⛔</span><span>Block<small>You'll stop seeing each other and the chat is removed.</small></span></button>
+        <button class="opt" id="sfUnmatch"><span class="ic">💔</span><span>Unmatch<small>Ends the match and deletes the chat for both of you.</small></span></button>
+        <p class="sf-note" id="sfNote"></p>
+      </div>
+    </div>
+  </div>
+  <div class="sheet-wrap" id="reportSheet" role="dialog" aria-modal="true" aria-labelledby="rpTitle">
+    <div class="sheet-bg" id="rpBg"></div>
+    <div class="sheet">
+      <div class="grab"></div>
+      <div class="sheet-head"><h2 id="rpTitle">Report</h2>
+        <button class="back" id="rpClose" aria-label="Close report"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+      <div class="sheet-body">
+        <p class="fsub" style="margin:4px 0 12px">Reports are private — they won't know it was you.</p>
+        <div class="reasons" id="rpReasons">
+          <label><input type="radio" name="rpr" value="fake"> Fake profile or spam</label>
+          <label><input type="radio" name="rpr" value="inappropriate_messages"> Inappropriate messages</label>
+          <label><input type="radio" name="rpr" value="inappropriate_photos"> Inappropriate photos</label>
+          <label><input type="radio" name="rpr" value="harassment"> Harassment or threats</label>
+          <label><input type="radio" name="rpr" value="scam"> Scam or asking for money</label>
+          <label><input type="radio" name="rpr" value="underage"> May be under 18</label>
+          <label><input type="radio" name="rpr" value="other"> Something else</label>
+        </div>
+        <label class="f" for="rpDetails">Details (optional)</label>
+        <textarea class="inp" id="rpDetails" maxlength="1000" placeholder="What happened?"></textarea>
+        <label class="swrow"><span>Also block them<small>Recommended. You'll stop seeing each other.</small></span><input type="checkbox" class="sw" id="rpBlock" checked></label>
+        <div class="err" id="rpErr"></div>
+      </div>
+      <div class="sheet-foot"><button type="button" class="btn ghost" id="rpCancel">Cancel</button><button type="button" class="btn" id="rpSend">Send report</button></div>
+    </div>
+  </div>
 
   <!-- Filter sheet -->
   <div class="sheet-wrap" id="filterSheet">
@@ -453,16 +579,30 @@ textarea.inp{resize:none;height:84px}
   <div class="pv-wrap" id="previewOv" role="dialog" aria-modal="true" aria-label="Preview of your card">
     <div class="topbar"><h2>Your card</h2>
       <button class="back" id="pvClose" aria-label="Close preview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-    <p class="pv-sub">This is how you'd appear to others in Discover. Tap the photo to flip through.</p>
+    <p class="pv-sub" id="pvSub">This is how you'd appear to others in Discover. Tap the photo to flip through.</p>
     <div class="pv-area"><div class="card" id="pvCard"></div></div>
   </div>
   <div class="toast" id="toast"></div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js" integrity="sha384-Rj26LVGvoeRVR6+mwQmFfcR3QOBEwT+ZmuCWpuiqeTzJpCs0ER4ITAWGb4Hiy3Ok" crossorigin="anonymous"></script>
 <script>
 (() => {
 'use strict';
-const KEY = 'ember.v1';
+const KEY = 'ember.v1';            // guest/demo mode (same key as v1–v5, so old local data keeps working)
+const KEY_ACCT = 'ember.v6.';        // + user id: per-account local state (filters, demo chats)
+const MODE_KEY = 'ember.mode';
+// Supabase project (publishable key is safe in the browser; all tables are protected by Row Level Security)
+const SB_URL = 'https://dvozogvvdadgckgxtdkd.supabase.co';
+const SB_KEY = 'sb_publishable_vlnpD28bGisbCQgC4-TXNg_ns9v9yvk';
+const SITE_URL = 'https://plbrown.github.io/ember/'; // where confirmation / reset emails send people back
+const SIGN_TTL = 6*3600; // signed photo URLs last 6 hours
+const HASH = new URLSearchParams(location.hash.replace(/^#/,'')); // read before supabase-js consumes it
+const QUERY = new URLSearchParams(location.search);
+let sb = null;
+try { if (window.supabase) sb = window.supabase.createClient(SB_URL, SB_KEY, {auth:{flowType:'implicit', detectSessionInUrl:true, persistSession:true, autoRefreshToken:true}}); } catch(e) { sb = null; }
+let MODE = null;   // 'guest' (demo only, local) | 'account' (Supabase)
+let ME = null;     // {id, email} when signed in
 const INTERESTS = ['☕ Coffee','🥾 Hiking','🎵 Live music','🍜 Foodie','📚 Books','🎮 Gaming','🧘 Yoga','✈️ Travel','🎨 Art','🐶 Dogs','🐱 Cats','🏀 Sports','🎬 Movies','🌱 Plants','🍷 Wine','📸 Photography','💃 Dancing','🏋️ Fitness','🧑‍🍳 Cooking','🎤 Karaoke'];
 
 // Fictional sample profiles. likesYou => right swipe creates a match.
@@ -480,6 +620,7 @@ const PROFILES = [
   {id:'p11',name:'Leo',    age:32, mi:80, emoji:'🐕', g:['#fdc830','#f37335'], bio:'My golden retriever is the real catch here. I just hold the leash.', tags:['🐶 Dogs','🏋️ Fitness','🥾 Hiking'], likesYou:false},
   {id:'p12',name:'Grace',  age:29, mi:6,  emoji:'🍷', g:['#e96443','#904e95'], bio:'Wine bar regular, crossword competitor, believes pineapple belongs on pizza. Debate me.', tags:['🍷 Wine','📚 Books','🎬 Movies'], likesYou:true},
 ];
+PROFILES.forEach(p=>p.demo=true);
 const byId = Object.fromEntries(PROFILES.map(p=>[p.id,p]));
 
 const OPENERS = {
@@ -796,7 +937,6 @@ function normUser(u){
   u.photos=photos.slice(0,PHOTO_LIMIT);
   return u;
 }
-let S = load();
 function defaultFilters(){ return {ageMin:AGE_MIN, ageMax:AGE_MAX, dist:null, interests:[], shared:false}; } // dist null = Anywhere
 function normFilters(f){
   const d=defaultFilters(); if(!f || typeof f!=='object') return d;
@@ -806,21 +946,41 @@ function normFilters(f){
   return {ageMin:a, ageMax:b, dist:f.dist==null?null:num(f.dist,1,DIST_MAX,null),
           interests:Array.isArray(f.interests)?[...new Set(f.interests.filter(i=>INTERESTS.includes(i)))]:[], shared:!!f.shared};
 }
-function fresh(){ return {user:null, seen:[], liked:[], passed:[], matches:[], chats:{}, unread:{}, filters:defaultFilters(), mem:{}}; }
+function fresh(){ return {user:null, seen:[], liked:[], passed:[], matches:[], chats:{}, unread:{}, filters:defaultFilters(), mem:{}, demoOn:false, lastRead:{}}; }
+const keyFor=()=>MODE==='account' && ME ? KEY_ACCT+ME.id : KEY;
 function load(){
-  try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && typeof s==='object'){ const st=Object.assign(fresh(), s); st.filters=normFilters(st.filters);
-    if(st.user) st.user=normUser(st.user);
+  try { const s = JSON.parse(localStorage.getItem(keyFor())); if (s && typeof s==='object'){ const st=Object.assign(fresh(), s); st.filters=normFilters(st.filters);
+    st.user = MODE==='account' ? null : (st.user ? normUser(st.user) : null); // accounts load the profile from the database
+    if(!st.lastRead || typeof st.lastRead!=='object') st.lastRead={};
     st.mem=(st.mem && typeof st.mem==='object')?Object.fromEntries(Object.entries(st.mem).map(([k,v])=>[k,normMem(v)])):{}; return st; } } catch(e){}
   return fresh();
 }
+let S = fresh();
 // Returns true on success, false on failure (e.g. storage quota exceeded).
-function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); return true; } catch(e){ return false; } }
+function save(){ try { localStorage.setItem(keyFor(), JSON.stringify(MODE==='account'?Object.assign({},S,{user:null}):S)); return true; } catch(e){ return false; } }
+function legacyUser(){ try{ const s=JSON.parse(localStorage.getItem(KEY)); return s && s.user ? normUser(s.user) : null; }catch(e){ return null; } }
 
 const $ = s => document.querySelector(s);
-if(migrated) save();
 const esc = s => String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-const validPhoto = u => typeof u==='string' && /^data:image\/(jpeg|png|webp|gif);base64,[A-Za-z0-9+/=]+$/.test(u) ? u : null;
+const SIGNED_RX = /^https:\/\/dvozogvvdadgckgxtdkd\.supabase\.co\/storage\/v1\/object\/sign\/photos\/[^"'<>\s\\]+$/;
+const validPhoto = u => typeof u==='string' && (/^data:image\/(jpeg|png|webp|gif);base64,[A-Za-z0-9+/=]+$/.test(u) || SIGNED_RX.test(u)) ? u : null;
+// Guest mode stores photos as data URLs; accounts store storage paths ("<uid>/<file>.jpg") that resolve to signed URLs.
+const URLS = {};
+const src = x => !x ? null : x.startsWith('data:') ? x : (URLS[x] ? URLS[x].url : null);
+async function signPaths(paths){
+  if(!sb) return;
+  const now=Date.now();
+  const need=[...new Set(paths.filter(p=>p && !p.startsWith('data:') && (!URLS[p] || URLS[p].exp-now<15*60e3)))];
+  for(let i=0;i<need.length;i+=100){
+    const chunk=need.slice(i,i+100);
+    try{
+      const {data,error}=await sb.storage.from('photos').createSignedUrls(chunk, SIGN_TTL);
+      if(error||!data) continue;
+      data.forEach((d,j)=>{ if(d && d.signedUrl && !d.error) URLS[d.path||chunk[j]]={url:d.signedUrl, exp:now+SIGN_TTL*1000}; });
+    }catch(e){}
+  }
+}
 function avatar(p, size, opts={}){
   const g = p.g || ['#ff5a5f','#ff8a3d'];
   const photo = validPhoto(p.photo);
@@ -830,9 +990,49 @@ function avatar(p, size, opts={}){
                                           : `<span style="font-size:${Math.round(size*.5)}px">${p.emoji}</span>`;
   return `<div class="av${photo?' has-photo':''}" style="width:${size}px;height:${size}px;background:linear-gradient(135deg,${g[0]},${g[1]})">${inner}</div>`;
 }
-function me(){ return {name:S.user?.name||'You', emoji:null, g:['#ff5a5f','#ff8a3d'], photo:S.user?.photos?.[0]||null}; }
+function me(){ return {name:S.user?.name||'You', emoji:null, g:['#ff5a5f','#ff8a3d'], photo:src(S.user?.photos?.[0])}; }
 const photos=()=>S.user?.photos||[];
 
+// ---------- Real members (Supabase) ----------
+const COLS='id,name,age,bio,interests,photos,lat,lng'; // birthdate is write-once and never readable through the API
+const GRADS=[['#ff9a8b','#ff6a88'],['#667eea','#764ba2'],['#43cea2','#185a9d'],['#f7971e','#ffd200'],['#fc5c7d','#6a82fb'],['#11998e','#38ef7d'],['#ee0979','#ff6a00'],['#00c6ff','#0072ff']];
+const gradFor=id=>GRADS[[...id].reduce((n,c)=>(n*31+c.charCodeAt(0))>>>0,7)%GRADS.length];
+function ageFrom(iso){ const d=new Date(iso+'T00:00:00'); if(isNaN(d)) return NaN; const t=new Date(); let a=t.getFullYear()-d.getFullYear(); const m=t.getMonth()-d.getMonth(); if(m<0||(m===0&&t.getDate()<d.getDate())) a--; return a; }
+const isoDate=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+function yearsAgo(n){ const d=new Date(); d.setFullYear(d.getFullYear()-n); return d; }
+const numOrNull=v=>v==null||v===''?null:+v;
+function userFromRow(r){ return {name:r.name, age:r.age, bio:r.bio||'', interests:(r.interests||[]).filter(i=>INTERESTS.includes(i)), photos:(r.photos||[]).slice(0,PHOTO_LIMIT), lat:numOrNull(r.lat), lng:numOrNull(r.lng)}; }
+function milesBetween(a,b){ const R=3958.8, rad=x=>x*Math.PI/180; const dLat=rad(b.lat-a.lat), dLng=rad(b.lng-a.lng);
+  const h=Math.sin(dLat/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dLng/2)**2; return 2*R*Math.asin(Math.sqrt(h)); }
+function realFromRow(r){
+  const p={id:r.id, real:true, name:r.name, age:r.age, bio:r.bio||'', tags:(r.interests||[]).filter(i=>INTERESTS.includes(i)),
+           paths:(r.photos||[]).slice(0,PHOTO_LIMIT), lat:numOrNull(r.lat), lng:numOrNull(r.lng), g:gradFor(r.id), emoji:null};
+  Object.defineProperty(p,'photo',{get(){ return src(this.paths[0]); }});
+  // distance only when both people shared an (approximate) location
+  Object.defineProperty(p,'mi',{get(){ const u=S.user; if(!u || u.lat==null || this.lat==null) return null; return Math.max(1, Math.round(milesBetween(u, this))); }});
+  return p;
+}
+const R = {profiles:{}, order:[], liked:new Set(), passed:new Set(), blocked:new Set(), matches:[], msgs:{}, loaded:false, shown:new Set()};
+function resetR(){ R.profiles={}; R.order=[]; R.liked=new Set(); R.passed=new Set(); R.blocked=new Set(); R.matches=[]; R.msgs={}; R.loaded=false; R.shown=new Set(); }
+const prof=id=>byId[id]||R.profiles[id];
+const matchedWith=uid=>R.matches.some(m=>m.other===uid);
+const NET_MSG="Couldn't reach Ember. Check your connection and try again.";
+function dbMsg(e){ const m=(e&&e.message)||''; if(/18 or older/.test(m)) return 'You must be 18 or older to use Ember.';
+  if(/fetch|network|Failed to|Load failed/i.test(m)) return NET_MSG; return m ? "Something went wrong: "+m : NET_MSG; }
+async function saveProfile(patch, insert=false){
+  try{
+    const q = insert ? sb.from('profiles').insert(patch) : sb.from('profiles').update(patch).eq('id',ME.id);
+    const {data,error}=await q.select(COLS).single();
+    if(error) return {ok:false, msg:dbMsg(error)};
+    S.user=userFromRow(data); await signPaths(S.user.photos);
+    return {ok:true};
+  }catch(e){ return {ok:false, msg:NET_MSG}; }
+}
+function coarseLocation(){ // asks once; rounds to 0.1° (~11 km) before it ever leaves the device
+  return new Promise(res=>{ if(!navigator.geolocation) return res(null);
+    navigator.geolocation.getCurrentPosition(p=>res({lat:Math.round(p.coords.latitude*10)/10, lng:Math.round(p.coords.longitude*10)/10}), ()=>res(null),
+      {enableHighAccuracy:false, timeout:10000, maximumAge:30*60e3}); });
+}
 // ---------- Own photo upload ----------
 const PHOTO_MAX = 600, PHOTO_Q = 0.85, PHOTO_MAX_BYTES = 25*1024*1024;
 const MAIN_OPTS={max:PHOTO_MAX, q:PHOTO_Q}, EXTRA_OPTS={max:480, q:0.75}; // extra gallery photos are smaller to save storage
@@ -870,16 +1070,43 @@ function processPhoto(file, opts=MAIN_OPTS){
   });
 }
 const QUOTA_MSG = 'Not enough storage space for that photo. Try a smaller one.';
-let obPhoto = null; // photo staged in the onboarding / edit form
-// Apply a change to the gallery and save; on failure (storage full) restore the previous photos.
+let obPhoto = null, obPhoto0 = null; // photo staged in the onboarding / edit form, and what it started as
+let pq=Promise.resolve();
+const persistQ=fn=>(pq=pq.then(fn).catch(e=>console.warn(e)));
+function refreshPhotoUI(){ if(current==='profile') renderProfile(); if($('#viewer').classList.contains('show')) renderViewer(); if($('#previewOv').classList.contains('show')) renderPreview(); }
+function dataUrlToBlob(u){ const [h,b]=u.split(','); const bin=atob(b); const a=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) a[i]=bin.charCodeAt(i); return new Blob([a],{type:h.slice(5).split(';')[0]}); }
+// Upload an already-resized JPEG data URL to photos/<uid>/...; returns the storage path.
+async function uploadPhoto(dataUrl){
+  const path=`${ME.id}/${Date.now().toString(36)}-${Math.random().toString(36).slice(2,8)}.jpg`;
+  let res;
+  try{ res=await sb.storage.from('photos').upload(path, dataUrlToBlob(dataUrl), {contentType:'image/jpeg', cacheControl:'3600', upsert:false}); }
+  catch(e){ throw new Error("Couldn't upload that photo. Check your connection and try again."); }
+  if(res.error) throw new Error(/size|large|exceed/i.test(res.error.message)?'That photo is too large to upload.':"Couldn't upload that photo. Check your connection and try again.");
+  URLS[path]={url:dataUrl, exp:Infinity}; // show our own copy right away
+  return path;
+}
+function removeFiles(paths){ paths=(paths||[]).filter(p=>p && !p.startsWith('data:')); if(!paths.length || !sb) return Promise.resolve();
+  return sb.storage.from('photos').remove(paths).catch(()=>{}); }
+// Apply a change to the gallery. Guest: save locally (restore on quota error). Account: update the profile row, then delete removed files.
 function commitPhotos(next, failMsg=QUOTA_MSG){
   const prev=S.user.photos.slice();
-  S.user.photos=next.slice(0,PHOTO_LIMIT);
+  next=next.slice(0,PHOTO_LIMIT);
+  S.user.photos=next;
+  if(MODE==='account'){
+    const removed=prev.filter(x=>!next.includes(x));
+    persistQ(async()=>{
+      const r=await saveProfile({photos:next});
+      if(!r.ok){ S.user.photos=prev; refreshPhotoUI(); toast(r.msg); return; }
+      await removeFiles(removed);
+    });
+    return true;
+  }
   if(!save()){ S.user.photos=prev; save(); toast(failMsg); return false; }
   return true;
 }
-function setUserPhoto(url){ // replace (or remove) the main photo — the "Change photo" / "Remove" controls
+async function setUserPhoto(url){ // replace (or remove) the main photo — the "Change photo" / "Remove" controls
   const next=photos().slice();
+  if(url && MODE==='account'){ try{ url=await uploadPhoto(url); }catch(e){ toast(e.message); return false; } }
   if(url){ if(next.length) next[0]=url; else next.push(url); } else next.shift();
   return commitPhotos(next);
 }
@@ -890,26 +1117,38 @@ async function addPhotos(files){
   const room=PHOTO_LIMIT-photos().length;
   if(room<=0){ toast(`You can have up to ${PHOTO_LIMIT} photos. Delete one to add another.`); return; }
   addingPhotos=true;
+  const acct=MODE==='account', before=photos().slice();
   const take=files.slice(0,room), skipped=files.length-take.length;
-  let added=0, bad=0, full=false, lastErr='';
+  let added=0, bad=0, full=false, lastErr='', upErr='';
   for(const f of take){
     let url;
     try{ url=await processPhoto(f, photos().length===0?MAIN_OPTS:EXTRA_OPTS); }
     catch(e){ bad++; lastErr=e.message; continue; }
+    if(acct){
+      if(take.length>1) toast(`Uploading ${added+1} of ${take.length - bad}…`);
+      try{ url=await uploadPhoto(url); }catch(e){ upErr=e.message; break; }
+      S.user.photos.push(url); added++; continue;
+    }
     S.user.photos.push(url);
     if(!save()){ S.user.photos.pop(); save(); full=true; break; } // storage full: keep what we have
     added++;
+  }
+  if(acct && added){
+    const r=await saveProfile({photos:S.user.photos});
+    if(!r.ok){ const fresh=S.user.photos.filter(p=>!before.includes(p)); S.user.photos=before; removeFiles(fresh); added=0; upErr=r.msg; }
   }
   addingPhotos=false;
   renderProfile();
   const n=k=>`${k} photo${k===1?'':'s'}`;
   let msg;
-  if(full) msg = added ? `Storage is full — added ${n(added)}. Delete a photo to make room.` : "Storage is full, so that photo wasn't added. Delete one to make room.";
+  if(upErr && !added) msg = upErr;
+  else if(full) msg = added ? `Storage is full — added ${n(added)}. Delete a photo to make room.` : "Storage is full, so that photo wasn't added. Delete one to make room.";
   else if(!added) msg = take.length===1 ? lastErr : "Couldn't read those files. Please pick photos.";
   else {
     msg = added===1 ? 'Photo added 📸' : `${added} photos added 📸`;
     if(bad) msg += ` (${bad} skipped: not an image)`;
     if(skipped) msg = `Added ${n(added)} — that's the ${PHOTO_LIMIT}-photo limit`;
+    if(upErr) msg = `Added ${n(added)}. ${upErr}`;
   }
   toast(msg);
 }
@@ -943,7 +1182,7 @@ $('#photoIn').addEventListener('change', async e=>{
   try { url=await processPhoto(file); }
   catch(err){ toast(err.message); if(target==='onboard') $('#obErr').textContent=err.message; return; }
   if(target==='onboard'){ obPhoto=url; $('#obErr').textContent=''; renderObPhoto(); toast('Looking good! 📸'); }
-  else if(S.user){ const had=photos().length>0; if(setUserPhoto(url)){ renderProfile(); toast(had?'Photo updated 📸':'Photo added 📸'); } }
+  else if(S.user){ const had=photos().length>0; if(await setUserPhoto(url)){ renderProfile(); toast(had?'Photo updated 📸':'Photo added 📸'); } }
 });
 $('#galleryIn').addEventListener('change', e=>{ const files=[...(e.target.files||[])]; e.target.value=''; addPhotos(files); });
 
@@ -954,7 +1193,7 @@ function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('sh
 let current = null;
 function show(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active', s.id===id));
-  $('#tabs').style.display = (id==='onboard'||id==='chat') ? 'none' : 'flex';
+  $('#tabs').style.display = (id==='onboard'||id==='chat'||id==='auth'||id==='loading') ? 'none' : 'flex';
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.tab===id));
   current = id;
   if (id==='discover') renderDeck();
@@ -965,7 +1204,7 @@ function show(id){
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>show(t.dataset.tab)));
 
 function updateBadge(){
-  const n = Object.values(S.unread).filter(Boolean).length;
+  const n = Object.values(S.unread).filter(Boolean).length + (MODE==='account' ? R.matches.filter(m=>realUnread(m)).length : 0);
   const b=$('#badge'); b.textContent=n; b.classList.toggle('show', n>0);
 }
 
@@ -983,10 +1222,22 @@ $('#obChips').addEventListener('click', e=>{
   c.classList.toggle('on', selected.has(i));
 });
 function openOnboard(){
-  const u=S.user;
-  $('#obName').value=u?.name||''; $('#obAge').value=u?.age||''; $('#obBio').value=u?.bio||'';
-  selected=new Set(u?.interests||[]); renderChips();
-  obPhoto=validPhoto(u?.photos?.[0]); renderObPhoto();
+  const u=S.user, acct=MODE==='account';
+  const legacy = acct && !u ? legacyUser() : null; // a new account can start from the demo profile made on this device
+  const base = u || legacy;
+  $('#obName').value=base?.name||''; $('#obAge').value=u?.age||''; $('#obBio').value=base?.bio||'';
+  $('#obDob').value=''; $('#obDob').max=isoDate(yearsAgo(18)); $('#obDob').min='1900-01-02';
+  // accounts: birthday is asked once at sign-up; afterwards the age is shown read-only (it updates on your birthday)
+  const askDob = acct && !u;
+  $('#obAgeWrap').style.display=askDob?'none':''; $('#obDobWrap').style.display=askDob?'':'none';
+  $('#obAge').disabled = acct; $('#obAge').title = acct ? 'Set from your birthday' : '';
+  $('#obLocWrap').style.display=acct?'':'none'; $('#obNote').style.display=acct?'':'none';
+  $('#obLoc').checked = !!(acct && u && u.lat!=null);
+  $('#obPhotoHint').textContent = acct ? 'JPG, PNG, WebP or GIF. Visible to Ember members.' : 'JPG, PNG, WebP or GIF. Stays on this device.';
+  selected=new Set(base?.interests||[]); renderChips();
+  if(acct){ obPhoto0 = u ? validPhoto(src(u.photos[0])) : null; obPhoto = u ? obPhoto0 : validPhoto(legacy?.photos?.[0]); }
+  else { obPhoto=validPhoto(u?.photos?.[0]); obPhoto0=obPhoto; }
+  renderObPhoto();
   $('#obGo').textContent = u ? 'Save profile' : 'Start discovering';
   $('#obErr').textContent='';
   show('onboard');
@@ -996,6 +1247,7 @@ $('#obForm').addEventListener('submit', e=>{
   const name=$('#obName').value.trim(), age=parseInt($('#obAge').value,10), bio=$('#obBio').value.trim();
   const err=$('#obErr');
   if(!name) return err.textContent='Please enter your first name.';
+  if(MODE==='account') return saveOnboardRemote(name, bio);
   if(!age || age<18 || age>99) return err.textContent='You must be 18 or older to use Ember.';
   if(selected.size<1) return err.textContent='Pick at least one interest.';
   const wasNew=!S.user;
@@ -1007,19 +1259,61 @@ $('#obForm').addEventListener('submit', e=>{
   else if (wasNew) toast(`Welcome, ${name}! 🔥`); else toast('Profile saved');
   show(wasNew?'discover':'profile');
 });
+let obSaving=false;
+async function saveOnboardRemote(name, bio){
+  const err=$('#obErr'), dob=$('#obDob').value, isNew=!S.user;
+  if(isNew){
+    if(!dob) return err.textContent='Please enter your birthday.';
+    const age=ageFrom(dob);
+    if(!(age>=18)) return err.textContent='You must be 18 or older to use Ember.';
+    if(age>110) return err.textContent='Please check your birthday.';
+  }
+  if(selected.size<1) return err.textContent='Pick at least one interest.';
+  if(obSaving) return; obSaving=true;
+  const go=$('#obGo'), lbl=go.textContent; go.classList.add('busy'); go.textContent='Saving…'; err.textContent='';
+  const wasNew=!S.user; const ph=(S.user?.photos||[]).slice(); let uploaded=null, replaced=null;
+  try{
+    if(obPhoto!==obPhoto0){
+      if(!obPhoto){ replaced=ph.shift(); }
+      else { uploaded=await uploadPhoto(obPhoto); if(ph.length){ replaced=ph[0]; ph[0]=uploaded; } else ph.push(uploaded); }
+    }
+    let lat=null, lng=null;
+    if($('#obLoc').checked){
+      const loc=await coarseLocation();
+      if(loc){ lat=loc.lat; lng=loc.lng; }
+      else if(S.user && S.user.lat!=null){ lat=S.user.lat; lng=S.user.lng; }
+      else toast("Couldn't get your location, so distance won't be shown.");
+    }
+    const fields={name, bio, interests:[...selected], photos:ph, lat, lng};
+    const r=await saveProfile(wasNew ? Object.assign({id:ME.id, birthdate:dob}, fields) : fields, wasNew);
+    if(!r.ok) throw new Error(r.msg);
+    if(replaced) removeFiles([replaced]);
+    toast(wasNew?`Welcome, ${name}! 🔥`:'Profile saved');
+    show(wasNew?'discover':'profile');
+    if(wasNew) refreshReal();
+  }catch(e2){
+    if(uploaded) removeFiles([uploaded]);
+    err.textContent=e2.message||NET_MSG;
+  }finally{ obSaving=false; go.classList.remove('busy'); go.textContent=lbl; }
+}
 
 // ---------- Deck ----------
 const deck=$('#deck');
 let animating=false;
 let pinned=null; // a rewound profile stays visible even if current filters would hide it
 function passes(p, f=S.filters){
-  if(p.age<f.ageMin || (f.ageMax<AGE_MAX && p.age>f.ageMax)) return false;
-  if(f.dist!=null && p.mi>f.dist) return false;
+  if(!(p.age>=f.ageMin) || (f.ageMax<AGE_MAX && p.age>f.ageMax)) return false;
+  const mi=p.mi; // real members: null unless both of you shared an approximate location
+  if(f.dist!=null && mi!=null && mi>f.dist) return false;
   if(f.interests.length && !p.tags.some(t=>f.interests.includes(t))) return false;
   if(f.shared && !p.tags.some(t=>(S.user?.interests||[]).includes(t))) return false;
   return true;
 }
-function unseen(){ return PROFILES.filter(p=>!S.seen.includes(p.id)); }
+// Real members first; fictional demo profiles only in demo mode or once the member has opted in.
+function realUnseen(){ if(MODE!=='account') return [];
+  return R.order.map(id=>R.profiles[id]).filter(p=>p && !R.liked.has(p.id) && !R.passed.has(p.id) && !R.blocked.has(p.id) && !matchedWith(p.id)); }
+function demoUnseen(){ return (MODE!=='account' || S.demoOn) ? PROFILES.filter(p=>!S.seen.includes(p.id)) : []; }
+function unseen(){ return [...realUnseen(), ...demoUnseen()]; }
 function queue(f=S.filters){ return unseen().filter(p=>p.id===pinned || passes(p,f)); }
 function activeCount(f=S.filters){ return (f.ageMin!==AGE_MIN||f.ageMax!==AGE_MAX?1:0)+(f.dist!=null?1:0)+(f.interests.length?1:0)+(f.shared?1:0); }
 const ageTxt=f=>`${f.ageMin} – ${f.ageMax>=AGE_MAX?AGE_MAX+'+':f.ageMax}`;
@@ -1090,18 +1384,24 @@ $('#femptyReset').addEventListener('click',()=>applyFilters(defaultFilters(),'Fi
 $('#femptyEdit').addEventListener('click',openFilters);
 function cardHTML(p){
   const shared = (S.user?.interests||[]).filter(i=>p.tags.includes(i)).length;
-  return `<div class="photo" style="background:linear-gradient(160deg,${p.g[0]},${p.g[1]})">
-      <div class="emoji">${p.emoji}</div><div class="init">${p.name[0]}</div></div>
+  const ph=validPhoto(p.photo), mi=p.mi, n=p.real?p.paths.length:0;
+  const dist = mi==null ? '' : p.real ? `<span>📍 ${mi<=6?'Nearby':'~'+mi+' mi away'}</span>` : `<span>📍 ${mi} mi away</span>`;
+  const art = ph ? `<img src="${ph}" alt="${esc(p.name)}" draggable="false">`
+            : p.emoji ? `<div class="emoji">${p.emoji}</div><div class="init">${esc(p.name[0])}</div>`
+            : `<div class="big-init">${esc(p.name.charAt(0).toUpperCase())}</div>`;
+  return `<div class="photo" style="background:linear-gradient(160deg,${p.g[0]},${p.g[1]})">${art}</div>
+    ${p.demo?'<div class="demo-tag" title="Fictional demo profile">Demo · fictional</div>':'<div class="real-tag">● Ember member</div>'}
     <div class="stamp like">Like</div><div class="stamp nope">Nope</div>
     <div class="info">
       <div class="name">${esc(p.name)} <small>${p.age}</small></div>
-      <div class="meta"><span>📍 ${p.mi} mi away</span>${shared?`<span>✨ ${shared} shared interest${shared>1?'s':''}</span>`:''}</div>
+      <div class="meta">${dist}${n>1?`<span>📸 ${n}</span>`:''}${shared?`<span>✨ ${shared} shared interest${shared>1?'s':''}</span>`:''}</div>
       <div class="bio">${esc(p.bio)}</div>
       <div class="chips">${p.tags.map(t=>`<span class="chip static">${esc(t)}</span>`).join('')}</div>
     </div>`;
 }
 function renderDeck(){
-  const q=queue().slice(0,3);
+  const loading = MODE==='account' && !R.loaded;
+  const all = loading ? [] : queue(), q=all.slice(0,3);
   deck.innerHTML='';
   q.slice().reverse().forEach((p,ri)=>{
     const idx=q.length-1-ri;
@@ -1112,11 +1412,14 @@ function renderDeck(){
     if(idx>0) el.style.pointerEvents='none';
     deck.appendChild(el);
   });
-  const n=queue().length, empty=!n;
-  const filteredOut = empty && unseen().length>0; // people remain, but filters hide them all
-  $('#empty').style.display=empty && !filteredOut?'flex':'none';
+  const n=all.length, empty=!n;
+  const filteredOut = !loading && empty && unseen().length>0; // people remain, but filters hide them all
+  const offerDemo = !loading && empty && !filteredOut && MODE==='account' && !S.demoOn;
+  $('#ldeck').style.display=loading?'flex':'none';
+  $('#empty').style.display=empty && !filteredOut && !offerDemo && !loading?'flex':'none';
+  $('#realEmpty').style.display=offerDemo?'flex':'none';
   $('#fempty').style.display=filteredOut?'flex':'none';
-  $('#femptyTxt').textContent = S.seen.length && PROFILES.some(p=>S.seen.includes(p.id) && passes(p))
+  $('#femptyTxt').textContent = (S.seen.length && PROFILES.some(p=>S.seen.includes(p.id) && passes(p))) || R.passed.size || R.liked.size
     ? "You've seen everyone who matches. Widen your age range, distance or interests to see more people."
     : 'Try widening your age range, distance or interests to see more people.';
   $('#actions').style.display=empty?'none':'flex';
@@ -1155,7 +1458,7 @@ function attachDrag(el){
 function swipe(dir, dx=0, dy=0, superLike=false){
   const el=topCard(); if(!el || animating) return;
   animating=true;
-  const p=byId[el.dataset.id];
+  const p=prof(el.dataset.id);
   const w=window.innerWidth;
   el.querySelector(dir==='right'?'.stamp.like':'.stamp.nope').style.opacity=1;
   el.style.transition='transform .42s ease-out, opacity .42s ease-out';
@@ -1165,15 +1468,44 @@ function swipe(dir, dx=0, dy=0, superLike=false){
   // promote next cards
   const cards=[...deck.children].slice(0,-1).reverse();
   cards.forEach((c,i)=>{ c.style.transition='transform .35s ease'; c.style.transform=`translateY(${i*10}px) scale(${1-i*0.04})`; });
-  S.seen.push(p.id); if(pinned===p.id) pinned=null;
-  if(dir==='right'){ S.liked.push(p.id); } else { S.passed.push(p.id); }
+  if(pinned===p.id) pinned=null;
   lastPass = dir==='left' ? p.id : null;
+  if(p.real){ // real member: write to the database; a mutual like creates the match server-side
+    (dir==='right'?R.liked:R.passed).add(p.id);
+    if(dir==='right') R.justLiked.set(p.id, Date.now());
+    setTimeout(()=>{ animating=false; renderDeck(); }, 400);
+    realSwipe(p, dir, superLike);
+    return;
+  }
+  S.seen.push(p.id);
+  if(dir==='right'){ S.liked.push(p.id); } else { S.passed.push(p.id); }
   let matched=false;
   if(dir==='right' && p.likesYou && !S.matches.includes(p.id)){
     S.matches.unshift(p.id); S.chats[p.id]=S.chats[p.id]||[]; S.unread[p.id]=true; matched=true;
   }
   save();
-  setTimeout(()=>{ animating=false; renderDeck(); if(matched) showMatch(p); else if(superLike) toast(`Super Like sent to ${p.name} ⭐`); }, 400);
+  setTimeout(()=>{ animating=false; renderDeck(); if(matched) showMatch(p, p.id); else if(superLike) toast(`Super Like sent to ${p.name} ⭐`); }, 400);
+}
+async function realSwipe(p, dir, superLike){
+  const t0=Date.now(), after=fn=>setTimeout(fn, Math.max(0, 430-(Date.now()-t0)));
+  try{
+    if(dir==='right'){
+      const {error}=await sb.from('likes').insert({liker:ME.id, likee:p.id, super:!!superLike});
+      if(error && error.code!=='23505') throw error;
+      const [a,b]=[ME.id,p.id].sort();
+      const {data:m,error:e2}=await sb.from('matches').select('id,user_a,user_b,created_at').eq('user_a',a).eq('user_b',b).maybeSingle();
+      if(e2) throw e2;
+      if(m){ addMatch(m); R.shown.add(m.id); after(()=>{ showMatch(p, 'm:'+m.id); updateBadge(); }); }
+      else if(superLike) after(()=>toast(`Super Like sent to ${p.name} ⭐`));
+    } else {
+      const {error}=await sb.from('passes').insert({passer:ME.id, passee:p.id});
+      if(error && error.code!=='23505') throw error;
+    }
+  }catch(e){
+    (dir==='right'?R.liked:R.passed).delete(p.id);
+    if(lastPass===p.id) lastPass=null;
+    after(()=>{ if(current==='discover' && !animating) renderDeck(); toast(dbMsg(e)); });
+  }finally{ setTimeout(()=>R.justLiked.delete(p.id), 8000); }
 }
 let lastPass=null;
 $('#likeBtn').addEventListener('click',()=>swipe('right'));
@@ -1181,14 +1513,20 @@ $('#passBtn').addEventListener('click',()=>swipe('left'));
 $('#infoBtn').addEventListener('click',()=>swipe('right',0,0,true));
 $('#undoBtn').addEventListener('click',()=>{
   if(!lastPass){ toast('Nothing to rewind'); return; }
-  S.seen=S.seen.filter(x=>x!==lastPass); S.passed=S.passed.filter(x=>x!==lastPass);
-  const p=byId[lastPass]; pinned=passes(p)?null:p.id; lastPass=null; save(); renderDeck();
+  const id=lastPass, p=prof(id); lastPass=null; if(!p) return;
+  if(p.real){ R.passed.delete(id); sb.from('passes').delete().eq('passer',ME.id).eq('passee',id).then(({error})=>{ if(error) toast(dbMsg(error)); }); }
+  else { S.seen=S.seen.filter(x=>x!==id); S.passed=S.passed.filter(x=>x!==id); save(); }
+  pinned=passes(p)?null:p.id; renderDeck();
   toast(`Rewound — ${p.name} is back`);
 });
 $('#refillBtn').addEventListener('click',()=>{
-  // Re-show profiles you haven't matched with
-  S.seen=S.seen.filter(id=>S.matches.includes(id)); S.passed=[]; S.liked=S.liked.filter(id=>S.matches.includes(id)); lastPass=null; pinned=null; save(); renderDeck();
+  // Re-show profiles you haven't matched with (demo), and real members you passed on
+  S.seen=S.seen.filter(id=>S.matches.includes(id)); S.passed=[]; S.liked=S.liked.filter(id=>S.matches.includes(id)); lastPass=null; pinned=null; save();
+  if(MODE==='account' && R.passed.size){ R.passed=new Set(); sb.from('passes').delete().eq('passer',ME.id).then(({error})=>{ if(error) toast(dbMsg(error)); }); }
+  renderDeck();
 });
+$('#demoOnBtn').addEventListener('click',()=>{ S.demoOn=true; save(); renderDeck(); toast('Showing demo profiles — they’re fictional'); });
+$('#realRefresh').addEventListener('click',()=>refreshReal(true));
 document.addEventListener('keydown', e=>{
   if($('#viewer').classList.contains('show')){
     if(e.key==='Escape') closeViewer(); else if(e.key==='ArrowRight'){ e.preventDefault(); viewerGo(1); } else if(e.key==='ArrowLeft'){ e.preventDefault(); viewerGo(-1); }
@@ -1198,6 +1536,8 @@ document.addEventListener('keydown', e=>{
     if(e.key==='Escape') closePreview(); else if(e.key==='ArrowRight') pvGo(1); else if(e.key==='ArrowLeft') pvGo(-1);
     return;
   }
+  if($('#reportSheet').classList.contains('show')){ if(e.key==='Escape') closeReport(); return; }
+  if($('#safetySheet').classList.contains('show')){ if(e.key==='Escape') closeSafety(); return; }
   if($('#filterSheet').classList.contains('show')){ if(e.key==='Escape') closeFilters(); return; }
   if($('#matchOv').classList.contains('show')){ if(e.key==='Escape') hideMatch(); return; }
   if(current!=='discover') return;
@@ -1208,8 +1548,8 @@ document.addEventListener('keydown', e=>{
 
 // ---------- Match overlay ----------
 let matchWith=null;
-function showMatch(p){
-  matchWith=p;
+function showMatch(p, key){
+  matchWith={p, key:key||p.id};
   $('#matchTxt').textContent=`You and ${p.name} liked each other.`;
   $('#pair').innerHTML=avatar(me(),110,{initials:true})+'<div class="heart">❤</div>'+avatar(p,110);
   const c=$('#confetti'); c.innerHTML='';
@@ -1219,68 +1559,110 @@ function showMatch(p){
 }
 function hideMatch(){ $('#matchOv').classList.remove('show'); }
 $('#ovKeep').addEventListener('click',()=>{ hideMatch(); updateBadge(); });
-$('#ovMsg').addEventListener('click',()=>{ hideMatch(); openChat(matchWith.id); });
+$('#ovMsg').addEventListener('click',()=>{ hideMatch(); openChat(matchWith.key); });
 
 // ---------- Matches ----------
 function timeAgo(t){ const s=(Date.now()-t)/1000; if(s<60) return 'now'; if(s<3600) return Math.floor(s/60)+'m'; if(s<86400) return Math.floor(s/3600)+'h'; return Math.floor(s/86400)+'d'; }
+function realUnread(m){ const list=R.msgs[m.id]||[], last=list[list.length-1], seen=S.lastRead[m.id]||0;
+  if(!last) return !seen; return last.sender!==ME.id && Date.parse(last.created_at)>seen; }
+function convos(){
+  const out=[];
+  if(MODE==='account') for(const m of R.matches){ const p=R.profiles[m.other]; if(!p) continue; const list=R.msgs[m.id]||[], l=list[list.length-1];
+    out.push({key:'m:'+m.id, p, real:true, unread:realUnread(m), last:l?{from:l.sender===ME.id?'me':'them', text:l.body, t:Date.parse(l.created_at)}:null}); }
+  for(const id of S.matches){ const p=byId[id]; if(!p) continue; const l=(S.chats[id]||[]).at(-1); out.push({key:id, p, real:false, unread:!!S.unread[id], last:l||null}); }
+  return out;
+}
 function renderMatches(){
-  const box=$('#matchContent');
-  if(!S.matches.length){
+  const box=$('#matchContent'), all=convos();
+  if(!all.length){
     box.innerHTML=`<div style="text-align:center;padding:80px 20px"><div style="font-size:60px">💌</div><h2 style="margin:10px 0 6px">No matches yet</h2><p class="muted">Keep swiping — when someone likes you back, they'll show up here.</p><button class="btn" id="goSwipe" style="max-width:220px;margin:22px auto 0">Start swiping</button></div>`;
     $('#goSwipe').onclick=()=>show('discover'); return;
   }
-  const fresh=S.matches.filter(id=>!(S.chats[id]||[]).length);
-  const convos=S.matches.filter(id=>(S.chats[id]||[]).length)
-    .sort((a,b)=>S.chats[b].at(-1).t - S.chats[a].at(-1).t);
+  const fresh=all.filter(c=>!c.last), convs=all.filter(c=>c.last).sort((a,b)=>b.last.t-a.last.t);
+  const tag=c=>c.real?'':' <span class="dtag">Demo</span>';
   let h='';
   if(fresh.length){
-    h+=`<div class="sec">New matches</div><div class="newrow">`+fresh.map(id=>{const p=byId[id];return `<button class="m" data-id="${id}"><div class="ring">${avatar(p,62)}</div><div style="margin-top:6px">${esc(p.name)}</div></button>`}).join('')+`</div>`;
+    h+=`<div class="sec">New matches</div><div class="newrow">`+fresh.map(c=>`<button class="m" data-id="${esc(c.key)}"><div class="ring">${avatar(c.p,62)}</div><div style="margin-top:6px">${esc(c.p.name)}</div>${c.real?'':'<span class="dtag" style="margin:3px 0 0">Demo</span>'}</button>`).join('')+`</div>`;
   }
   h+=`<div class="sec">Messages</div>`;
-  if(!convos.length) h+=`<p class="muted" style="padding:10px 0">Say hi to your new matches! 👋</p>`;
-  h+=`<div class="list">`+convos.map(id=>{const p=byId[id], last=S.chats[id].at(-1);
-    return `<button class="item" data-id="${id}">${avatar(p,56)}<div class="txt"><div class="nm">${esc(p.name)} ${S.unread[id]?'<span style="color:var(--accent)">●</span>':''}</div><div class="pv" style="${S.unread[id]?'color:var(--ink);font-weight:600':''}">${last.from==='me'?'You: ':''}${esc(last.text)}</div></div><div class="tm">${timeAgo(last.t)}</div></button>`}).join('')+`</div>`;
+  if(!convs.length) h+=`<p class="muted" style="padding:10px 0">Say hi to your new matches! 👋</p>`;
+  h+=`<div class="list">`+convs.map(c=>`<button class="item" data-id="${esc(c.key)}">${avatar(c.p,56)}<div class="txt"><div class="nm">${esc(c.p.name)}${tag(c)} ${c.unread?'<span style="color:var(--accent)">●</span>':''}</div><div class="pv" style="${c.unread?'color:var(--ink);font-weight:600':''}">${c.last.from==='me'?'You: ':''}${esc(c.last.text)}</div></div><div class="tm">${timeAgo(c.last.t)}</div></button>`).join('')+`</div>`;
   box.innerHTML=h;
   box.querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>openChat(b.dataset.id)));
 }
 
 // ---------- Chat ----------
+// Chat keys: demo chats use the demo id ("p4", local + automated replies); real chats use "m:<match uuid>" (database + realtime).
 let chatId=null, replyTimers=[];
 const typingIn={}, pendingReply={};
-function openChat(id){
-  chatId=id; const p=byId[id];
-  S.unread[id]=false; save();
-  $('#chatAv').innerHTML=avatar(p,40);
-  $('#chatName').textContent=p.name;
+function chatInfo(key){
+  if(!key) return null;
+  if(key.startsWith('m:')){ if(MODE!=='account') return null; const mid=key.slice(2), m=R.matches.find(x=>x.id===mid); if(!m) return null; const p=R.profiles[m.other]; if(!p) return null;
+    return {real:true, mid, m, p, list:(R.msgs[mid]||[]).map(x=>({from:x.sender===ME.id?'me':'them', text:x.body, t:Date.parse(x.created_at), pending:!!x.pending}))}; }
+  const p=byId[key]; if(!p) return null;
+  return {real:false, p, list:S.chats[key]||[]};
+}
+function openChat(key){
+  const c=chatInfo(key); if(!c) return;
+  chatId=key;
+  if(c.real) S.lastRead[c.mid]=Date.now(); else S.unread[key]=false;
+  save();
+  $('#chatAv').innerHTML=avatar(c.p,40);
+  $('#chatName').textContent=c.p.name;
+  $('#chatTag').style.display=c.real?'none':'';
   renderMsgs();
   $('#ice').innerHTML=ICE.map(t=>`<button type="button" class="chip">${esc(t)}</button>`).join('');
-  $('#ice').style.display=(S.chats[id]||[]).some(m=>m.from==='me')?'none':'flex';
+  $('#ice').style.display=c.list.some(m=>m.from==='me')?'none':'flex';
   show('chat');
-  // if the app was closed while they were "typing", answer the unanswered message now
-  const list=S.chats[id]||[];
-  if(list.length && list.at(-1).from==='me' && !pendingReply[id]) scheduleReply(id);
+  // demo: if the app was closed while they were "typing", answer the unanswered message now
+  if(!c.real){ const list=S.chats[key]||[]; if(list.length && list.at(-1).from==='me' && !pendingReply[key]) scheduleReply(key); }
   setTimeout(()=>$('#msgIn').focus(),50);
 }
 function renderMsgs(){
-  const p=byId[chatId], list=S.chats[chatId]||[], typing=!!typingIn[chatId];
+  const c=chatInfo(chatId); if(!c) return;
+  const p=c.p, typing=!c.real && !!typingIn[chatId];
   const m=$('#msgs');
-  m.innerHTML=`<div class="sys"><div class="duo">${avatar(me(),64,{initials:true})}${avatar(p,64)}</div><div style="margin-top:8px">You matched with <b>${esc(p.name)}</b>. Say hello! 👋</div></div>`+
-    list.map(x=>`<div class="bub ${x.from==='me'?'me':'them'}">${esc(x.text)}</div>`).join('')+
+  m.innerHTML=`<div class="sys"><div class="duo">${avatar(me(),64,{initials:true})}${avatar(p,64)}</div><div style="margin-top:8px">You matched with <b>${esc(p.name)}</b>. Say hello! 👋</div>`+
+    (c.real?'<div style="margin-top:4px;font-size:12px">🔒 Only the two of you can see this chat.</div>':'<div style="margin-top:4px;font-size:12px">Demo profile — fictional, with automated replies.</div>')+`</div>`+
+    c.list.map(x=>`<div class="bub ${x.from==='me'?'me':'them'}"${x.pending?' style="opacity:.65"':''}>${esc(x.text)}</div>`).join('')+
     (typing?`<div class="typing-row"><div class="typing" aria-hidden="true"><i></i><i></i><i></i></div><span class="typing-lbl">${esc(p.name)} is typing…</span></div>`:'');
-  const st=$('#chatStatus'); st.textContent=typing?'typing…':'● Active now'; st.classList.toggle('typing-now',typing);
+  const st=$('#chatStatus'); st.textContent=typing?'typing…':(c.real?'● Ember member':'● Active now'); st.classList.toggle('typing-now',typing);
   m.scrollTop=m.scrollHeight;
 }
 function send(text){
   text=text.trim(); if(!text||!chatId) return;
   const id=chatId;
+  if(id.startsWith('m:')) return sendReal(id.slice(2), text);
   S.chats[id]=S.chats[id]||[];
   S.chats[id].push({from:'me',text,t:Date.now()}); save();
   $('#ice').style.display='none';
   renderMsgs();
   scheduleReply(id);
 }
-// Compose a reply to every unanswered message, show "… is typing" for a time scaled to the reply length, then deliver.
+function pushMsg(row){
+  const list=R.msgs[row.match_id]||(R.msgs[row.match_id]=[]);
+  const ex=list.find(x=>x.id===row.id);
+  if(ex){ Object.assign(ex,row,{pending:false}); return false; }
+  list.push(row); list.sort((a,b)=>Date.parse(a.created_at)-Date.parse(b.created_at)); return true;
+}
+async function sendReal(mid, text){
+  const row={id:crypto.randomUUID(), match_id:mid, sender:ME.id, body:text.slice(0,1000), created_at:new Date().toISOString(), pending:true};
+  pushMsg(row); $('#ice').style.display='none'; renderMsgs();
+  try{
+    const {error}=await sb.from('messages').insert({id:row.id, match_id:mid, sender:ME.id, body:row.body});
+    if(error) throw error;
+    row.pending=false;
+  }catch(e){
+    const list=R.msgs[mid]||[], i=list.indexOf(row); if(i>=0) list.splice(i,1);
+    toast(R.matches.some(m=>m.id===mid) ? "Message not sent. Check your connection and try again." : 'This match has ended.');
+    if(chatId==='m:'+mid && !$('#msgIn').value) $('#msgIn').value=text;
+  }
+  S.lastRead[mid]=Date.now(); save();
+  if(chatId==='m:'+mid && current==='chat') renderMsgs();
+}
+// Compose a reply to every unanswered message, show "… is typing" for a time scaled to the reply length, then deliver. (Demo chats only.)
 function scheduleReply(id){
+  if(!byId[id]) return;
   (pendingReply[id]||[]).forEach(clearTimeout); typingIn[id]=false;
   const list=S.chats[id]||[]; let i=list.length; while(i>0 && list[i-1].from==='me') i--;
   if(i===list.length) return;
@@ -1291,6 +1673,7 @@ function scheduleReply(id){
   const t1=setTimeout(()=>{ typingIn[id]=true; if(vis()) renderMsgs(); }, readDelay);
   const t2=setTimeout(()=>{
     typingIn[id]=false; delete pendingReply[id];
+    if(!S.chats[id]) return; // unmatched meanwhile
     S.chats[id].push({from:'them',text:r.text,t:Date.now()}); S.mem[id]=r.mem;
     if(!vis()) S.unread[id]=true;
     save();
@@ -1302,12 +1685,77 @@ $('#composer').addEventListener('submit',e=>{ e.preventDefault(); send($('#msgIn
 $('#ice').addEventListener('click',e=>{ const c=e.target.closest('.chip'); if(c) send(c.textContent); });
 $('#chatBack').addEventListener('click',()=>{ chatId=null; show('matches'); });
 
+// ---------- Safety: unmatch / block / report ----------
+let sfKey=null, rpKey=null;
+function openSafety(){
+  const c=chatInfo(chatId); if(!c) return; sfKey=chatId;
+  $('#sfTitle').textContent=c.p.name;
+  $('#sfReport').style.display=c.real?'':'none'; $('#sfBlock').style.display=c.real?'':'none';
+  $('#sfNote').textContent = c.real
+    ? `Blocking and reporting are private — ${c.p.name} isn't told who did it. Stay safe: keep chats on Ember until you trust someone, never send money, and meet in public.`
+    : `${c.p.name} is a fictional demo profile with automated replies. Unmatching just removes this demo chat.`;
+  $('#safetySheet').classList.add('show'); setTimeout(()=>$('#sfClose').focus(),30);
+}
+function closeSafety(){ $('#safetySheet').classList.remove('show'); }
+function closeReport(){ $('#reportSheet').classList.remove('show'); }
+$('#chatMenu').addEventListener('click',openSafety);
+$('#sfClose').addEventListener('click',closeSafety); $('#sfBg').addEventListener('click',closeSafety);
+$('#sfUnmatch').addEventListener('click',()=>unmatch(sfKey));
+$('#sfBlock').addEventListener('click',()=>blockUser(sfKey, true));
+$('#sfReport').addEventListener('click',()=>openReport(sfKey));
+function endMatchLocal(mid){ R.matches=R.matches.filter(m=>m.id!==mid); delete R.msgs[mid]; delete S.lastRead[mid]; save(); }
+function leaveChat(key, msg){
+  closeSafety(); closeReport();
+  if(chatId===key){ chatId=null; show('matches'); } else if(current==='matches') renderMatches();
+  updateBadge(); if(msg) toast(msg);
+}
+async function unmatch(key){
+  const c=chatInfo(key); if(!c) return;
+  if(!confirm(c.real?`Unmatch ${c.p.name}? Your chat will be deleted for both of you.`:`Unmatch ${c.p.name}? This removes the demo chat.`)) return;
+  if(!c.real){
+    S.matches=S.matches.filter(x=>x!==key); delete S.chats[key]; delete S.unread[key]; delete S.mem[key];
+    (pendingReply[key]||[]).forEach(clearTimeout); delete pendingReply[key]; typingIn[key]=false; save();
+    return leaveChat(key, `Unmatched ${c.p.name}`);
+  }
+  const {error}=await sb.from('matches').delete().eq('id',c.mid);
+  if(error) return toast(dbMsg(error));
+  endMatchLocal(c.mid); leaveChat(key, `Unmatched ${c.p.name}`);
+}
+async function blockUser(key, ask){
+  const c=chatInfo(key); if(!c || !c.real) return false;
+  if(ask && !confirm(`Block ${c.p.name}? You won't see each other on Ember any more, and your match and chat will be removed.`)) return false;
+  const {error}=await sb.from('blocks').insert({blocker:ME.id, blocked:c.p.id});
+  if(error && error.code!=='23505'){ toast(dbMsg(error)); return false; }
+  R.blocked.add(c.p.id); endMatchLocal(c.mid); leaveChat(key, `${c.p.name} is blocked`);
+  return true;
+}
+function openReport(key){
+  const c=chatInfo(key); if(!c || !c.real) return; rpKey=key; closeSafety();
+  $('#rpTitle').textContent=`Report ${c.p.name}`;
+  document.querySelectorAll('#rpReasons input').forEach(i=>i.checked=false);
+  $('#rpDetails').value=''; $('#rpBlock').checked=true; $('#rpErr').textContent='';
+  $('#reportSheet').classList.add('show');
+}
+$('#rpClose').addEventListener('click',closeReport); $('#rpBg').addEventListener('click',closeReport); $('#rpCancel').addEventListener('click',closeReport);
+$('#rpSend').addEventListener('click', async()=>{
+  const c=chatInfo(rpKey); if(!c){ closeReport(); return; }
+  const reason=document.querySelector('#rpReasons input:checked')?.value;
+  if(!reason){ $('#rpErr').textContent='Please choose a reason.'; return; }
+  const btn=$('#rpSend'); btn.classList.add('busy');
+  const {error}=await sb.from('reports').insert({reporter:ME.id, reported:c.p.id, reason, details:$('#rpDetails').value.trim().slice(0,1000)});
+  btn.classList.remove('busy');
+  if(error){ $('#rpErr').textContent=dbMsg(error); return; }
+  const alsoBlock=$('#rpBlock').checked; closeReport();
+  if(alsoBlock) await blockUser(rpKey, false);
+  toast(alsoBlock?`Thanks — report sent and ${c.p.name} is blocked`:'Thanks — your report was sent');
+});
+
 // ---------- Profile ----------
 function renderProfile(){
   const u=S.user; if(!u) return;
-  const ph=photos();
+  const ph=photos(), acct=MODE==='account';
   const slots=Array.from({length:PHOTO_LIMIT},(_,i)=> i<ph.length
-    ? `<div class="gslot filled" data-i="${i}"><button type="button" class="gopen" aria-label="View photo ${i+1}${i===0?' (main)':''}"><img src="${ph[i]}" alt=""></button>${i===0?'<span class="gmain">Main</span>':''}<button type="button" class="gdel" data-i="${i}" aria-label="Delete photo ${i+1}">×</button></div>`
+    ? `<div class="gslot filled" data-i="${i}"><button type="button" class="gopen" aria-label="View photo ${i+1}${i===0?' (main)':''}"><img src="${validPhoto(src(ph[i]))||''}" alt=""></button>${i===0?'<span class="gmain">Main</span>':''}<button type="button" class="gdel" data-i="${i}" aria-label="Delete photo ${i+1}">×</button></div>`
     : `<button type="button" class="gslot empty" aria-label="Add photos">＋</button>`).join('');
   $('#profileContent').innerHTML=`
     <div class="pcard">
@@ -1320,9 +1768,9 @@ function renderProfile(){
       <p class="muted" style="margin:6px 0 12px">${esc(u.bio||'No bio yet.')}</p>
       <div class="chips" style="justify-content:center">${u.interests.map(i=>`<span class="chip on">${esc(i)}</span>`).join('')}</div>
       <div class="stats">
-        <div><b>${S.liked.length}</b><span>Likes sent</span></div>
-        <div><b>${S.matches.length}</b><span>Matches</span></div>
-        <div><b>${Object.values(S.chats).reduce((n,c)=>n+c.filter(m=>m.from==='me').length,0)}</b><span>Messages</span></div>
+        <div><b>${S.liked.length+(acct?R.liked.size:0)}</b><span>Likes sent</span></div>
+        <div><b>${S.matches.length+(acct?R.matches.length:0)}</b><span>Matches</span></div>
+        <div><b>${Object.values(S.chats).reduce((n,c)=>n+c.filter(m=>m.from==='me').length,0)+(acct?Object.values(R.msgs).reduce((n,l)=>n+l.filter(m=>m.sender===ME.id).length,0):0)}</b><span>Messages</span></div>
       </div>
     </div>
     <div class="gcard">
@@ -1331,10 +1779,15 @@ function renderProfile(){
       <div class="gal" id="gal">${slots}</div>
       <p class="gal-hint">${ph.length>1?'Drag to reorder · tap to view. Your first photo is your main one.':'Add up to 6 photos. Your first photo is your main one.'}</p>
     </div>
+    ${acct?`<div class="setrow"><label class="swrow"><span>Show demo profiles<small>Fictional practice profiles, shown only after real members.</small></span><input type="checkbox" class="sw" id="demoSw" ${S.demoOn?'checked':''}></label></div>`:''}
     <button class="btn ghost" id="previewBtn" style="margin-top:0;margin-bottom:12px">👀 Preview my card</button>
     <button class="btn ghost" id="editBtn" style="margin-top:0">✏️ Edit profile</button>
+    ${acct?`<button class="btn ghost" id="logoutBtn" style="margin-top:12px">Log out</button>
+    <button class="btn warn" id="deleteBtn" style="margin-top:12px">Delete my account &amp; data</button>
+    <p class="disclaimer"><b>Ember v6</b><br>Signed in as ${esc(ME.email)}. Your profile is visible to other signed-in members; your email never is. Demo profiles are fictional and their replies are automated.</p>`
+    :`<button class="btn" id="signupBtn" style="margin-top:12px">Create a real account</button>
     <button class="btn" id="resetBtn" style="background:#24181a;box-shadow:none;margin-top:12px">Reset app &amp; clear data</button>
-    <p class="disclaimer">Ember prototype v5. All profiles are fictional and replies are automated. Your photos are stored only on this device.</p>`;
+    <p class="disclaimer"><b>Ember v6</b> · Demo mode<br>All profiles here are fictional and replies are automated. Your photos are stored only on this device.</p>`}`;
   $('#editBtn').onclick=openOnboard;
   $('#pPhotoBtn').onclick=()=>$('#photoIn').click();
   $('#pPhotoAv').onclick=()=>{ if(photos().length) openViewer(0); else $('#photoIn').click(); };
@@ -1345,11 +1798,15 @@ function renderProfile(){
   document.querySelectorAll('#gal .gopen').forEach(b=>b.onclick=()=>{ if(dragJustEnded) return; openViewer(+b.closest('.gslot').dataset.i); });
   attachGalleryDrag($('#gal'));
   $('#previewBtn').onclick=openPreview;
-  if($('#pPhotoRm')) $('#pPhotoRm').onclick=()=>{
+  if($('#pPhotoRm')) $('#pPhotoRm').onclick=async()=>{
     if(!confirm('Remove your profile photo?')) return;
-    if(setUserPhoto(null)){ renderProfile(); toast('Photo removed'); }
+    if(await setUserPhoto(null)){ renderProfile(); toast('Photo removed'); }
   };
-  $('#resetBtn').onclick=()=>{
+  if($('#demoSw')) $('#demoSw').onchange=e=>{ S.demoOn=e.target.checked; save(); toast(S.demoOn?'Demo profiles on — shown after real members':'Demo profiles hidden'); };
+  if($('#logoutBtn')) $('#logoutBtn').onclick=logout;
+  if($('#deleteBtn')) $('#deleteBtn').onclick=deleteAccount;
+  if($('#signupBtn')) $('#signupBtn').onclick=()=>{ teardown(); localStorage.setItem(MODE_KEY,'auth'); showAuth('signup'); };
+  if($('#resetBtn')) $('#resetBtn').onclick=()=>{
     if(!confirm('Reset Ember? This clears your profile, matches and chats.')) return;
     replyTimers.forEach(clearTimeout); replyTimers=[]; for(const k in pendingReply) delete pendingReply[k]; for(const k in typingIn) delete typingIn[k];
     localStorage.removeItem(KEY); S=fresh(); lastPass=null; pinned=null; chatId=null; obPhoto=null; closeViewer(); closePreview();
@@ -1406,7 +1863,7 @@ function closeViewer(){ $('#viewer').classList.remove('show'); }
 function renderViewer(){
   const ph=photos(); if(!ph.length){ closeViewer(); return; }
   vwI=Math.max(0, Math.min(ph.length-1, vwI));
-  const img=$('#vwImg'); img.src=ph[vwI]; img.style.transform=''; img.alt=`Photo ${vwI+1} of ${ph.length}`;
+  const img=$('#vwImg'); img.src=validPhoto(src(ph[vwI]))||''; img.style.transform=''; img.alt=`Photo ${vwI+1} of ${ph.length}`;
   $('#vwCount').textContent=`${vwI+1} / ${ph.length}${vwI===0?' · Main':''}`;
   $('#vwDots').innerHTML=ph.map((_,i)=>`<i class="${i===vwI?'on':''}"></i>`).join('');
   $('#vwPrev').disabled=vwI===0; $('#vwNext').disabled=vwI===ph.length-1;
@@ -1432,12 +1889,12 @@ $('#vwDel').addEventListener('click',()=>{ if(deletePhoto(vwI)){ renderProfile()
 
 // ---------- Preview my card ----------
 let pvI=0;
-function openPreview(){ pvI=0; $('#previewOv').classList.add('show'); renderPreview(); setTimeout(()=>$('#pvClose').focus(),30); }
+function openPreview(){ pvI=0; $('#pvSub').textContent=MODE==='account'?'This is how other Ember members see you in Discover. Tap the photo to flip through.':"This is how you'd appear to others in Discover. Tap the photo to flip through."; $('#previewOv').classList.add('show'); renderPreview(); setTimeout(()=>$('#pvClose').focus(),30); }
 function closePreview(){ $('#previewOv').classList.remove('show'); }
 function pvGo(d){ const n=photos().length; if(n<2) return; pvI=Math.max(0,Math.min(n-1,pvI+d)); renderPreview(); }
 function renderPreview(){
   const u=S.user; if(!u) return; const ph=photos();
-  const bg=ph.length?`<img src="${ph[pvI]}" alt="Your photo ${pvI+1}">`:`<div class="emoji">${esc((u.name||'?').charAt(0).toUpperCase())}</div>`;
+  const bg=ph.length?`<img src="${validPhoto(src(ph[pvI]))||''}" alt="Your photo ${pvI+1}">`:`<div class="emoji">${esc((u.name||'?').charAt(0).toUpperCase())}</div>`;
   $('#pvCard').innerHTML=`<div class="photo" style="background:linear-gradient(160deg,#ff5a5f,#ff8a3d)">${bg}</div>
     ${ph.length>1?`<div class="pv-dots">${ph.map((_,i)=>`<i class="${i===pvI?'on':''}"></i>`).join('')}</div>
       <button type="button" class="pv-tap l" aria-label="Previous photo"></button><button type="button" class="pv-tap r" aria-label="Next photo"></button>`:''}
@@ -1452,8 +1909,267 @@ function renderPreview(){
 }
 $('#pvClose').addEventListener('click',closePreview);
 
+// ---------- Accounts: sign up / log in / password reset ----------
+let auMode='signup', recovering=HASH.get('type')==='recovery', booted=false, auBusy=false;
+function authMsg(e){
+  const c=(e&&e.code)||'', m=(e&&e.message)||'';
+  if(c==='email_address_not_authorized' || /not authorized/i.test(m)) return "Ember can't send email to that address yet — our email service is still being set up. Please try again later.";
+  if(c==='over_email_send_rate_limit' || /rate limit/i.test(m)) return 'Too many emails have been sent recently. Please wait a while and try again.';
+  if(c==='email_address_invalid' || (/invalid/i.test(m) && /email/i.test(m))) return 'Please enter a valid email address.';
+  if(c==='weak_password' || (/password/i.test(m) && /(least|weak|short|characters)/i.test(m))) return 'Please choose a stronger password (at least 8 characters).';
+  if(c==='invalid_credentials' || /invalid login/i.test(m)) return 'Wrong email or password.';
+  if(c==='email_not_confirmed' || /not confirmed/i.test(m)) return 'Please confirm your email first — check your inbox for the link.';
+  if(c==='same_password') return 'Please choose a different password from your old one.';
+  if(c==='signup_disabled') return 'Sign-ups are paused right now. Please try again later.';
+  if(/fetch|network|Failed to|Load failed/i.test(m)) return "Can't reach Ember right now. Check your connection.";
+  return m || 'Something went wrong. Please try again.';
+}
+function setAuthMsg(msg, isErr){ $('#auErr').textContent=isErr&&msg?msg:''; const ok=$('#auMsg'); ok.textContent=!isErr&&msg?msg:''; ok.classList.toggle('show', !!(!isErr&&msg)); }
+function showAuth(mode, msg, isErr){
+  auMode=mode;
+  const T={signup:['Join Ember','Small sparks, real connections.','Create account'], login:['Welcome back','Log in to see your matches.','Log in'],
+           reset:['Reset password',"We'll email you a link to choose a new one.",'Send reset link'], newpw:['Choose a new password','Almost done — pick something memorable.','Save new password'],
+           sent:['Check your email','','']}[mode];
+  $('#auTitle').textContent=T[0]; $('#auSub').textContent=T[1];
+  const go=$('#auGo'); go.textContent=T[2]; go.style.display=mode==='sent'?'none':'';
+  const vis=(id,on)=>{ $(id).style.display=on?'':'none'; };
+  $('#auTabs').style.display=(mode==='signup'||mode==='login')?'flex':'none';
+  $('#auTabSignup').classList.toggle('on',mode==='signup'); $('#auTabLogin').classList.toggle('on',mode==='login');
+  vis('#auEmailWrap', mode!=='newpw' && mode!=='sent');
+  vis('#auPwWrap', mode==='signup'||mode==='login'||mode==='newpw');
+  $('#auPwLbl').textContent=mode==='newpw'?'New password':'Password';
+  $('#auPw').autocomplete=mode==='login'?'current-password':'new-password';
+  $('#auPw').placeholder=mode==='login'?'Your password':'At least 8 characters';
+  vis('#auPw2Wrap', mode==='newpw'); vis('#auAgeWrap', mode==='signup'); vis('#auNote', mode==='signup');
+  vis('#auForgot', mode==='login'); vis('#auBack', mode==='reset'||mode==='sent'); vis('#auResend', false);
+  vis('#auGuest', mode==='signup'||mode==='login');
+  $('#auPw').value=''; $('#auPw2').value='';
+  setAuthMsg(msg, isErr);
+  show('auth');
+}
+$('#auTabs').addEventListener('click',e=>{ const b=e.target.closest('[data-m]'); if(b) showAuth(b.dataset.m); });
+$('#auForgot').addEventListener('click',()=>showAuth('reset'));
+$('#auBack').addEventListener('click',()=>showAuth('login'));
+$('#guestBtn').addEventListener('click',()=>enterGuest());
+$('#auResend').addEventListener('click', async()=>{
+  const email=$('#auEmail').value.trim().toLowerCase(); if(!email || !sb) return;
+  const {error}=await sb.auth.resend({type:'signup', email, options:{emailRedirectTo:SITE_URL}});
+  setAuthMsg(error?authMsg(error):`We sent a new confirmation link to ${email}.`, !!error);
+});
+const EMAIL_RX=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+$('#auForm').addEventListener('submit', async e=>{
+  e.preventDefault(); if(auBusy) return;
+  if(!sb){ setAuthMsg("Can't reach Ember's servers right now. Check your connection, or try the demo.", true); return; }
+  const email=$('#auEmail').value.trim().toLowerCase(), pw=$('#auPw').value;
+  if(auMode!=='newpw' && !EMAIL_RX.test(email)) return setAuthMsg('Please enter a valid email address.', true);
+  if((auMode==='signup'||auMode==='newpw') && pw.length<8) return setAuthMsg('Your password needs at least 8 characters.', true);
+  if(auMode==='login' && !pw) return setAuthMsg('Please enter your password.', true);
+  if(auMode==='newpw' && pw!==$('#auPw2').value) return setAuthMsg("Those passwords don't match.", true);
+  if(auMode==='signup' && !$('#auAge').checked) return setAuthMsg('You must be 18 or older to join Ember.', true);
+  const go=$('#auGo'), lbl=go.textContent; auBusy=true; go.classList.add('busy'); go.textContent='Please wait…'; setAuthMsg('');
+  try{
+    if(auMode==='signup'){
+      const {data,error}=await sb.auth.signUp({email, password:pw, options:{emailRedirectTo:SITE_URL, data:{age_confirmed:true}}});
+      if(error) throw error;
+      if(!data.session){ // email confirmation is on: wait for the link
+        showAuth('sent', `We sent a confirmation link to ${email}. Open it to finish signing up — it brings you back to Ember. (Check your spam folder if it hasn't arrived in a few minutes.)`);
+        $('#auEmail').value=email; $('#auResend').style.display='';
+      } // with a session (confirmation off) onAuthStateChange signs you straight in
+    } else if(auMode==='login'){
+      const {error}=await sb.auth.signInWithPassword({email, password:pw});
+      if(error){ if(error.code==='email_not_confirmed' || /not confirmed/i.test(error.message)) $('#auResend').style.display=''; throw error; }
+    } else if(auMode==='reset'){
+      const {error}=await sb.auth.resetPasswordForEmail(email, {redirectTo:SITE_URL});
+      if(error) throw error;
+      showAuth('sent', `If there's an Ember account for ${email}, a password reset link is on its way. Open it on this device to choose a new password.`);
+    } else if(auMode==='newpw'){
+      const {data,error}=await sb.auth.updateUser({password:pw});
+      if(error) throw error;
+      recovering=false; toast('Password updated 🔒');
+      await enterAccount(data.user);
+    }
+  }catch(err){ setAuthMsg(authMsg(err), true); }
+  finally{ auBusy=false; go.classList.remove('busy'); if(auMode!=='sent') go.textContent=lbl; }
+});
+
+// ---------- Modes ----------
+let chan=null, entering=null, lastRefresh=0;
+function teardown(){
+  if(sb && chan){ try{ sb.removeChannel(chan); }catch(e){} } chan=null;
+  replyTimers.forEach(clearTimeout); replyTimers=[]; for(const k in pendingReply) delete pendingReply[k]; for(const k in typingIn) delete typingIn[k];
+  resetR(); ME=null; MODE=null; S=fresh(); chatId=null; lastPass=null; pinned=null; obPhoto=null; obPhoto0=null;
+  closeViewer(); closePreview(); closeFilters(); closeSafety(); closeReport(); hideMatch();
+}
+function enterGuest(){
+  teardown();
+  MODE='guest'; localStorage.setItem(MODE_KEY,'guest');
+  S=load(); if(migrated) save();
+  $('#modeChip').style.display='';
+  if(S.user) show('discover'); else openOnboard();
+}
+async function enterAccount(user){
+  if(!user || (MODE==='account' && ME && ME.id===user.id) || entering===user.id) return;
+  entering=user.id;
+  teardown();
+  MODE='account'; ME={id:user.id, email:user.email||''}; localStorage.removeItem(MODE_KEY);
+  S=load(); $('#modeChip').style.display='none';
+  $('#loadTxt').textContent='Signing you in…'; show('loading');
+  try{
+    const {data:row,error}=await sb.from('profiles').select(COLS).eq('id',ME.id).maybeSingle();
+    if(error) throw error;
+    if(row){ S.user=userFromRow(row); await signPaths(S.user.photos); }
+    subscribe();
+    if(S.user) show('discover'); else openOnboard();
+    await refreshReal();
+  }catch(e){
+    teardown(); showAuth('login', "Couldn't load your account. "+authMsg(e), true);
+  }finally{ entering=null; }
+}
+let refreshing=null;
+function refreshReal(manual){
+  if(MODE!=='account' || !ME) return Promise.resolve();
+  if(refreshing) return refreshing;
+  refreshing=(async()=>{
+    const uid=ME.id;
+    try{
+      const [lk,ps,bl,mt,pf]=await Promise.all([
+        sb.from('likes').select('likee'), sb.from('passes').select('passee'), sb.from('blocks').select('blocked'),
+        sb.from('matches').select('id,user_a,user_b,created_at').order('created_at',{ascending:false}),
+        sb.from('profiles').select(COLS).neq('id',uid).order('created_at',{ascending:false}).limit(300)]);
+      for(const r of [lk,ps,bl,mt,pf]) if(r.error) throw r.error;
+      let ms=[];
+      const ids=mt.data.map(m=>m.id);
+      if(ids.length){ const r=await sb.from('messages').select('id,match_id,sender,body,created_at').in('match_id',ids).order('created_at').limit(3000); if(r.error) throw r.error; ms=r.data; }
+      if(!ME || ME.id!==uid) return;
+      R.liked=new Set(lk.data.map(r=>r.likee)); R.passed=new Set(ps.data.map(r=>r.passee)); R.blocked=new Set(bl.data.map(r=>r.blocked));
+      R.profiles={}; R.order=[];
+      pf.data.forEach(r=>{ R.profiles[r.id]=realFromRow(r); R.order.push(r.id); });
+      R.matches=mt.data.map(m=>({id:m.id, other:m.user_a===uid?m.user_b:m.user_a, created_at:m.created_at})).filter(m=>R.profiles[m.other]);
+      const pending=Object.values(R.msgs).flat().filter(x=>x.pending);
+      R.msgs={}; ms.forEach(pushMsg); pending.forEach(pushMsg);
+      await signPaths([...photos(), ...Object.values(R.profiles).flatMap(p=>p.paths)]);
+      R.loaded=true; lastRefresh=Date.now();
+      if(manual) toast(realUnseen().length?'New people found ✨':'No new people yet — check back soon');
+    }catch(e){ R.loaded=true; toast(dbMsg(e)); }
+    finally{ refreshing=null; }
+    renderCurrent();
+  })();
+  return refreshing;
+}
+function renderCurrent(){
+  if(current==='discover'){ if(!animating) renderDeck(); }
+  else if(current==='matches') renderMatches();
+  else if(current==='profile') renderProfile();
+  else if(current==='chat'){ if(chatInfo(chatId)) renderMsgs(); else { chatId=null; show('matches'); } }
+  updateBadge();
+}
+function addMatch(m){ if(R.matches.some(x=>x.id===m.id)) return false; R.matches.unshift({id:m.id, other:m.user_a===ME.id?m.user_b:m.user_a, created_at:m.created_at}); return true; }
+R.justLiked=new Map();
+// Realtime: RLS means each member only receives their own matches and messages.
+function subscribe(){
+  if(!sb || !ME) return;
+  if(chan) try{ sb.removeChannel(chan); }catch(e){}
+  let first=true;
+  chan=sb.channel('ember-'+ME.id)
+    .on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'}, p=>onMsg(p.new))
+    .on('postgres_changes',{event:'INSERT',schema:'public',table:'matches'}, p=>onMatch(p.new))
+    .on('postgres_changes',{event:'DELETE',schema:'public',table:'matches'}, p=>onUnmatch(p.old))
+    .subscribe(status=>{ if(status==='SUBSCRIBED'){ if(!first) refreshReal(); first=false; } });
+}
+function onMsg(row){
+  if(MODE!=='account' || !row || !row.match_id) return;
+  if(!R.matches.some(m=>m.id===row.match_id)){ refreshReal(); return; }
+  const isNew=pushMsg(row), key='m:'+row.match_id, open=chatId===key && current==='chat';
+  if(open){ S.lastRead[row.match_id]=Date.now(); save(); renderMsgs(); }
+  else if(isNew && row.sender!==ME.id){
+    const m=R.matches.find(x=>x.id===row.match_id), p=m && R.profiles[m.other];
+    if(p) toast(`💬 ${p.name}: ${row.body.length>60?row.body.slice(0,60)+'…':row.body}`);
+    if(current==='matches') renderMatches();
+  }
+  updateBadge();
+}
+async function onMatch(row){
+  if(MODE!=='account' || !row || !ME || (row.user_a!==ME.id && row.user_b!==ME.id)) return;
+  const other=row.user_a===ME.id?row.user_b:row.user_a;
+  if(!R.profiles[other]){
+    const {data}=await sb.from('profiles').select(COLS).eq('id',other).maybeSingle(); if(!data || !ME) return;
+    R.profiles[other]=realFromRow(data); R.order.push(other);
+  }
+  await signPaths(R.profiles[other].paths);
+  const isNew=addMatch(row);
+  if(isNew && !R.shown.has(row.id) && !R.justLiked.has(other)){ R.shown.add(row.id); toast(`🔥 It's a match! ${R.profiles[other].name} liked you back`); }
+  renderCurrent();
+}
+function onUnmatch(old){
+  if(MODE!=='account' || !old || !old.id) return;
+  const m=R.matches.find(x=>x.id===old.id); if(!m) return;
+  const p=R.profiles[m.other]; endMatchLocal(m.id);
+  if(chatId==='m:'+m.id){ chatId=null; closeSafety(); closeReport(); show('matches'); toast(`Your match with ${p?p.name:'them'} has ended`); }
+  else renderCurrent();
+}
+document.addEventListener('visibilitychange',()=>{ if(!document.hidden && MODE==='account' && Date.now()-lastRefresh>60e3) refreshReal(); });
+setInterval(()=>{ if(MODE==='account' && Date.now()-lastRefresh>2*3600e3) refreshReal(); }, 10*60e3); // keeps signed photo URLs fresh
+
+async function logout(){
+  if(!confirm('Log out of Ember?')) return;
+  try{ await sb.auth.signOut(); }catch(e){}
+  if(ME){ teardown(); showAuth('login', "You're logged out. See you soon! 👋"); }
+}
+async function deleteAccount(){
+  if(!confirm("Delete your Ember account?\n\nThis permanently deletes your profile, photos, likes, matches and messages. It can't be undone.")) return;
+  const typed=prompt('Type DELETE to confirm.');
+  if((typed||'').trim().toUpperCase()!=='DELETE'){ toast('Account not deleted'); return; }
+  const uid=ME.id; let full=false;
+  $('#loadTxt').textContent='Deleting your account…'; show('loading');
+  try{
+    try{ const {data:files}=await sb.storage.from('photos').list(uid,{limit:100});
+         if(files && files.length) await sb.storage.from('photos').remove(files.map(f=>`${uid}/${f.name}`)); }catch(e){}
+    // Server-side function removes the login itself; profile, likes, passes, matches, messages and blocks cascade.
+    try{ const {data,error}=await sb.functions.invoke('delete-account',{method:'POST'}); full=!error && !!(data && data.ok); }catch(e){}
+    if(!full){ // fallback: delete everything reachable with our own permissions
+      const {error}=await sb.from('profiles').delete().eq('id',uid);
+      if(error) throw error;
+      await sb.from('blocks').delete().eq('blocker',uid);
+    }
+    localStorage.removeItem(KEY_ACCT+uid);
+    teardown();
+    try{ await sb.auth.signOut({scope:'local'}); }catch(e){}
+    showAuth('signup', full ? 'Your account and all your data have been deleted. Take care! 💛'
+                            : "Your profile, photos, likes, matches and messages were deleted, but your login couldn't be removed. Please contact support to finish.");
+  }catch(e){ toast(dbMsg(e)); show('profile'); }
+}
+
 // ---------- Boot ----------
-if(S.user) show('discover'); else openOnboard();
+function cleanUrl(){ if(location.hash || QUERY.has('error') || QUERY.has('code')) history.replaceState(null,'',location.pathname); }
+function onAuth(event, session){
+  if(!booted) return;
+  if(event==='PASSWORD_RECOVERY'){ recovering=true; showAuth('newpw'); return; }
+  if(event==='SIGNED_OUT'){ if(!ME) return; teardown(); showAuth('login', "You've been signed out."); return; }
+  if(event==='SIGNED_IN' && session && !recovering){ if(!ME || ME.id!==session.user.id) enterAccount(session.user); }
+}
+async function boot(){
+  const linkErr = HASH.get('error_description') || QUERY.get('error_description');
+  const linkType = HASH.get('type');
+  if(!sb){ // CDN blocked or offline: the demo still works
+    if(localStorage.getItem(MODE_KEY)==='guest' || legacyUser()) return enterGuest();
+    showAuth('signup', "Can't reach Ember's servers right now, so sign-up is unavailable. You can still try the demo.", true); return;
+  }
+  sb.auth.onAuthStateChange((event, session)=>{ setTimeout(()=>onAuth(event, session), 0); });
+  let session=null;
+  try{ ({data:{session}} = await sb.auth.getSession()); }catch(e){}
+  cleanUrl(); booted=true;
+  if(session && recovering){ showAuth('newpw'); return; }
+  if(session){
+    await enterAccount(session.user);
+    if(linkType==='signup' || linkType==='email') toast('Email confirmed — welcome to Ember! 🔥');
+    return;
+  }
+  if(linkErr){ showAuth('login', /expired|invalid/i.test(linkErr) ? 'That email link is invalid or has expired. Log in, or request a new link.' : linkErr.replace(/\+/g,' '), true); return; }
+  const m=localStorage.getItem(MODE_KEY);
+  if(m==='guest' || (m!=='auth' && legacyUser())) return enterGuest();
+  showAuth('signup');
+}
+boot();
 })();
 </script>
 </body>
